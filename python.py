@@ -15,5 +15,4 @@ print('hello world')
 ## 5. JUPYTER NOTEBOOK -> 주피터 노트북 실행
 
 
-a = 'hello'
-b = 5
+
