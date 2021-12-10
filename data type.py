@@ -285,3 +285,29 @@ b = 7
 
 c = b in a
 print(c)
+
+### list 정렬 
+a = [10,7,3,5,15,13,17,15,14,19]
+a.sort()       # 리스트 자체를 내부적으로 정렬
+print(a)
+
+a.sort(reverse = True)
+print(a)
+s
+b = sorted(a)  # 정렬된 리스트의 복사본 반환
+print(b)
+
+## Tuple
+c = (1,2,3)
+c[0] = 100 
+print(c)    # 튜플은 불변
+
+d = (100,200)
+print(type(d))
+
+d = 100, 200
+print(type(d))
+
+a, b = 100, 200
+print(a, b)
+print(type(a), type(b))
