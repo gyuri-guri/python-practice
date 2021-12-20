@@ -53,3 +53,5 @@ if a:
     print('false')
 
 ### if,else
+
+### 아 겁나 하기 싫네 
