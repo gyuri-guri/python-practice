@@ -65,3 +65,49 @@ print(p1.name, p1.age)
 print(p2.name, p2.age)
 print(p3.name, p3.age)
 
+
+
+### self
+#### 파이썬의 method는 항상 첫번째 인자로 self를 전달
+#### self는 현재 해당 매쏘드가 호출되는 객체 자신을 가리킴
+#### 이름이 self 인것은 관용적인 표현이며 꼭 self일 필요는 없음.
+#### 위치는 항상 맨 청므의 parameter임
+
+class person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def sleep(self):
+        print(self.name, '은 잠을 잔다')
+
+a = person('bob','20')
+
+print(a)
+a.sleep()
+
+
+
+### Method 정의
+#### 멤버함수라고도 하며 해당 클래스의 object에서만 호추라능
+#### method는 객체 레벨에서 호출되며, 해당 객체의 속성에 대한 연산을 행함
+#### {obj}.{method}()형태로 호출됨
+class counter : 
+    def __init__(self):
+        self.num = 0
+    def print_current_value(self):
+        print('현재값은:',self.num)
+    def increment(self):
+        self.num += 1
+    def reset(self):
+        self.num = 0
+
+c1 = counter()
+c1.print_current_value()
+c1.increment()
+c1.increment()
+c1.print_current_value()
+
+c1.reset()
+c1.print_current_value()
+
+
