@@ -88,7 +88,7 @@ a.sleep()
 
 
 ### Method 정의
-#### 멤버함수라고도 하며 해당 클래스의 object에서만 호추라능
+#### 멤버함수라고도 하며 해당 클래스의 object에서만 호출가능
 #### method는 객체 레벨에서 호출되며, 해당 객체의 속성에 대한 연산을 행함
 #### {obj}.{method}()형태로 호출됨
 class counter : 
@@ -111,3 +111,33 @@ c1.reset()
 c1.print_current_value()
 
 
+
+### method type
+#### instance method - 객체로 호출 : 메쏘드는 객체 레벨로 호출 되기 때문에, 해당 메쏘드를 호출한 객체에만 영향을 미침
+#### class method - class로 호출 : 클래스 레벨로 호출되기 때문에 클래스 멤버 변수만 변경 가능
+
+##### 다음은 class method가 사용된 경우이다.
+class math : 
+    @staticmethod
+    def add(a,b):
+        return a + b
+    @staticmethod
+    def multiply(a,b):
+        return a * b
+    
+print(math.multiply(3,5))
+print(math.add(3,5))
+
+
+
+### class inheritance
+#### 클래스 상속. 기존에 정의해둔 클래스의 기능을 그대로 물려받을 수 있음
+#### 기존 클래스에 기능을 일부 추가하거나 변경하여 새로운 클래스를 정의함
+#### 코드를 재사용할 수도 있음
+#### 상속 받고자 하는 대상인 기존 클래스는 (parent, super, base class라고 부른다)
+#### 상속 받는 새로운 클래스는 (child, sub, derived class)
+#### 의미적으로 is-a관계를 가짐 
+
+class person:
+    def __init__(self, name, age):
+        
