@@ -140,4 +140,163 @@ print(math.add(3,5))
 
 class person:
     def __init__(self, name, age):
-        
+            self.name = name
+            self.age = age
+    def eat(self, food):
+        print('{}은 {}를 먹습니다'. format(self.name, food))
+    def sleep(self, minute):
+        print('{}은 {}분동안 잡니다'. format(self.name, minute))
+    def work(self, minute):
+        print('{}는 {}분동안 일 합니다'. format(self.name, minute))
+    
+class student(person):      # 기존 클래스(person)를 상속받은 새 클래스(student)
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+
+class employee(person):
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+kate = student('kate',20)
+suri = employee('suri',33)
+kate.eat()   # food가 없어서 error
+kate.eat('rice')
+suri.work(500)
+
+
+
+### method override
+#### 부모 클래스의 method를 재정의(override)
+#### 하위 클래스(자식 클래스)의 인스턴스로 호출시, 재정의된 메소드가 호출됨
+class person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def eat(self, food):
+        print('{}는 {}를 먹습니다'. format(self.name, food))
+    def sleep(self, minute):
+        print('{}는 {}분동안 잡니다'. format(self.name, minute))
+    def work(self, minute):
+        print('{}는 {}분동안 일합니다.'. format(self.name, minute))
+
+class student(person):
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def work(self, minute):
+        print('{}는 {}분동안 공부합니다.'. format(self.name, minute))
+
+class employee(person):
+    def __init__(self, name, age):
+        self.name=name
+        self.age=age
+    def work(self, minute):
+        print('{}은 {}분동안 업무를 합니다.'. format(self.name, minute))
+
+
+bob = student('bob',25)
+bob.eat('BBQ')
+bob.sleep(40)
+bob.work(60)
+
+moly = student('moly',30)
+moly.eat('rice')
+moly.sleep('60')
+moly.work('200')
+
+
+
+
+### super 
+#### 하위클래스에서 부모클래스의 method를 호출할때 사용
+class person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def eat(self, food):
+        print('{}는 {}를 먹습니다'. format(self.name, food))
+    def sleep(self, minute):
+        print('{}는 {}분동안 잡니다'. format(self.name, minute))
+    def work(self, minute):
+        print('{}는 {}분동안 준비합니다.'. format(self.name, minute))
+
+
+class student(person):
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def work(self, minute):
+        super().work(minute)
+        print('{}은 {}분 동안 공부합니다'. format(self.name, minute))
+
+class employee(person):
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def work(self, minute):
+        super().work(minute)
+        print('{}은 {}분 동안 업무를 합니다'. format(self.name, minute))
+
+
+bob = student('bob', 25)
+bob.eat('cake')
+bob.sleep(40)
+bob.work(60)   # 두개의 결과가 나옴 
+
+kate = employee('kate',42)
+kate.eat('buger')
+kate.sleep(50)
+kate.work(100)  # 두개의 결과가 나옴
+
+
+
+### special method
+#### __로 시작해서 __로 끝나는 특수 함수
+#### 함수 목록은 다음을 참고 https://docs.python.org/3/reference/datamodel.html
+class point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def add(self, pt):
+        new_x = self.x + pt.x
+        new_y = self.y + pt.y
+    
+    def __add__(self, pt):
+        new_x = self.x + pt.x
+        new_y = self.y + pt.y
+        return point(new_x, new_y)
+
+    def __sub__(self, pt):
+        new_x = self.x - pt.x
+        new_y = self.y - pt.y
+        return point(new_x, new_y)
+
+    def __str__(self):
+        return '({},{})' .format(self.x, self.y)
+
+    def __mul__(self, factor):
+        return point(self.x * factor, self.y * factor)
+
+    def __len__(self):
+        return self.x ** 2 + self.y ** 2
+
+
+p1 = point(3,4)
+p2 = point(2,7)        
+
+print(p1)
+print(p2)
+
+p3 = p1+p2
+print(p3)    # 정의한 class를 내장함수처럼 사용하기 
+
+p4 = p1-p2
+print(p4)
+
+p5 = p1 * 3
+print(p5)
+
+print(len(p1))
