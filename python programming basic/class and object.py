@@ -300,3 +300,60 @@ p5 = p1 * 3
 print(p5)
 
 print(len(p1))
+
+
+
+
+### 응용
+#### 복소수 클래스 정의. 덧셈, 뺄셈, 곱셈 연산자, 길이, 비교연산자, 절대값 지원
+import math
+class complexnumber:
+    def __init__(self, real, img):
+        self.real = real
+        self.img = img
+    
+    def __str__(self):
+        if self.img >= 0:
+            return '{} + {}j'. format(self.real, self.img)
+        else:
+            return '{} - {}j'. format(self.real, abs(self.img))
+    
+    def __add__(self, cm):
+        return complexnumber(self.real+ cm.real, self.img+cm.img)
+
+    def __sub__(self, cm):
+        return complexnumber(self.real-cm.real, self.img-cm.img)
+
+    def __mul__(self, x):
+        if type(x) == int:
+            return complexnumber(self.real * x, self.img * x)
+        elif type (x) == complexnumber:
+            return complexnumber(self.real * x.real - self.img * x.img, self.real * x.img + self.img * x.real)
+
+    def __len__(self):
+        return self.real ** 2 +self.img ** 2 
+    
+    def __eq__(self, cm):
+        return self.real == cm.real and self.img == cm.img
+    
+    def __ne__(self, cm):
+        return not (self.real == cm.real and self.img == cm.img)
+
+    def __abs__(self):
+        return math.sqrt(self.real ** 2 + self.img ** 2)
+
+a = complexnumber(1,2)
+b = complexnumber(2,3)        
+print(a)
+print(b)
+
+print(a + b)
+print(a - b)
+print(a * b)
+
+print(len(a))
+
+print(a==b)
+print(a!=b)
+
+print(abs(a))
